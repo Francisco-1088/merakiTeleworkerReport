@@ -5,6 +5,7 @@ This repository contains a number of tools for gathering information about large
 * **deviceClientReport:** Returns information about all clients attached to teleworker and SD-WAN devices across an entire organization, including the teleworker device or SD-WAN device they connect to, and the template their teleworker/SD-WAN device is attached to. Also returns information about individual teleworker/SD-WAN gateways, their reachability and active uplinks.
 * **spokeTemplateConfigs:** Returns existing configurations (l3/l7 firewalls, traffic shaping, shaping rules and hub priorities) for all teleworker and SD-WAN templates in the organization as well as the number of spokes attached to each one.
 * **asyncHubMapper:** Query VPN statuses across the entire organization, and determine the number of spokes attached to each hub by priority, their online/offline/dormant statuses, as well as their reachability/unreachability to each hub.
+* **teleworkerPolicyReport:** Returns a pair of CSV files, one with all of the clients in the teleworker environment, and another that adds site and policy information about each clients (Whitelisted, Blacklisted, Normal or Group Policy).
 
 # Table of Contents
 
@@ -60,6 +61,12 @@ In Progress...
 * `secondary_hub_stats.csv`: Contains the online, offline, dormant, reachable and unreachable spokes totals per Hub, for all spokes using that Hub as secondary.
 * `global_hub_stats.csv`: Contains the online, offline, dormant, reachable and unreachable spokes totals per Hub, detailing the number of spokes using it as primary and secondary for each stat.
 * Note that this script assumes that no spokes exist in the organization with more than 2 associated hubs.
+7. `teleworkerPolicyReport.py`:
+* Run with `python teleworkerPolicyReport.py`
+* This script is optimized with the async Library, but in very large orgs can take a while to finish. For a 7000 spoke organization, it can take 8-10 minutes to complete.
+* Output files:
+* `clients_report.csv`: Contains the list of all clients in the teleworker deployment.
+* `client_policy_report.csv`: Adds policy and network information to the previous list.
 
 <a id="caveats"></a>
 
